@@ -4,34 +4,32 @@
         <h2 class="post-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
     </header>
     <section class="post-excerpt">
-        <p>{{ .Summary }} <a class="read-more" href="{{.RelPermalink}}">&raquo;</a></p>
+        <p>{{ .Summary }}</p>
+
     </section>
     <footer class="post-meta">
-        {{$author:= .Site.Params.author}}
-        {{if .Params.author }}
-            {{$author:= .Params.author}}
-            {{if isset .Site.Data.authors $author}}
-                {{$author := index .Site.Data.authors .Params.author }}
-            {{end}}
-        {{end}}
-
+        {{$author := index .Site.Data.authors (or .Params.author .Site.Params.author)}}
         {{ if isset $author "thumbnail" }}
             <img class="author-thumb" src="{{ .Site.BaseURL }}{{ $author.thumbnail }}" alt="Author image" nopin="nopin" />
         {{else if .Site.Params.logo }}
             <img class="author-thumb" src="{{ .Site.BaseURL }}{{.Site.Params.logo}}" alt="Author image" nopin="nopin" />
         {{end}}
         {{ if isset $author "name" }}
-            {{$author.name}}
+            <a href="{{$baseurl}}">{{$author.name}}</a>
         {{else if .Site.Params.author}}
             {{.Site.Params.author}}
         {{end}}
         {{if .Params.tags }}on
+            {{ $last := sub (len .Params.tags) 1 }}
             {{ range $index, $tag := .Params.tags }}
-                <a href="{{$baseurl}}tags/{{ $tag | urlize }}/">#{{ $tag }}</a>,
+                <a href="{{$baseurl}}tags/{{ $tag | urlize }}/">
+                    {{ $tag }}{{ if ne $index $last }}, {{ end }}
+                </a>
             {{ end }}
         {{end}}
         <time class="post-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">
-            {{ .Date.Format "2 Jan 2006" }}
+            {{ .Date.Format "Jan 2, 2006" }}
+
         </time>
     </footer>
 </article>
