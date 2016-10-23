@@ -19,13 +19,9 @@
         {{else if .Site.Params.author}}
             {{.Site.Params.author}}
         {{end}}
-        {{if .Params.tags }}on
-            {{ $last := sub (len .Params.tags) 1 }}
-            {{ range $index, $tag := .Params.tags }}
-                <a href="{{$baseurl}}tags/{{ $tag | urlize }}/">
-                    {{ $tag }}{{ if ne $index $last }}, {{ end }}
-                </a>
-            {{ end }}
+        {{if .Params.tags }}
+            {{$tag := index .Params.tags 0}}
+                 on <a class="post-tag" href="{{$baseurl}}tags/{{ $tag | urlize }}/">{{ $tag }}</a>
         {{end}}
         <time class="post-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">
             {{ .Date.Format "Jan 2, 2006" }}
