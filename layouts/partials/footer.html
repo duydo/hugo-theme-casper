@@ -1,11 +1,52 @@
     <footer class="site-footer clearfix">
-        <section class="copyright">{{.Site.Copyright | safeHTML}} <a href="">{{.Site.Title}}</a></section>
-        {{if ne .Site.Params.hideHUGOSupport true}}
-        <section class="poweredby">
-            Powered by <a class="icon-hugo" href="http://gohugo.io">Hugo</a>.
-            Theme by <a class="icon-theme" href="https://github.com/duydo/hugo-theme-casper">Casper</a>
+        <section class="copyright">
+            {{.Site.Copyright | safeHTML}} {{.Site.Title}}.
         </section>
-        {{end}}
+        <section class="socials">
+            <span class="follow-me">Follow me</span>
+               {{ if .Site.Params.twitterName }}
+                <a class="bloglogo" href="https://twitter.com/{{ .Site.Params.twitterName }}" target="_blank">
+                    <span class="icon-twitter"></span>
+                </a>
+            &nbsp;
+            {{end}}
+            {{ if .Site.Params.linkedinName }}
+                <a class="bloglogo" href="https://www.linkedin.com/in/{{ .Site.Params.linkedinName }}" target="_blank">
+                    <span class="icon-linkedin"></span>
+                </a>
+            &nbsp;
+            {{end}}
+            {{ if .Site.Params.githubName }}
+                <a class="bloglogo" href="https://github.com/{{ .Site.Params.githubName }}" target="_blank">
+                <span class="icon-github"></span>
+                </a>
+            &nbsp;
+            {{end}}
+
+            {{ if .Site.Params.facebookName }}
+                <a class="bloglogo" href="https://www.facebook.com/{{ .Site.Params.facebookName }}" target="_blank">
+                    <span class="icon-facebook"></span>
+                </a>
+            &nbsp;
+            {{end}}
+            {{ if .Site.Params.instagramName }}
+                <a class="bloglogo" href="https://instagram.com/{{ .Site.Params.instagramName }}" target="_blank">
+                    <span class="icon-instagram"></span>
+                </a>
+            &nbsp;
+            {{end}}
+            {{ if .Site.Params.pinterestName }}
+                <a class="bloglogo" href="https://www.pinterest.com/{{ .Site.Params.pinterestName }}" target="_blank">
+                    <span class="icon-pinterest"></span>
+                </a>
+            {{end}}
+            {{ if .Site.Params.googlePlusName }}
+                <a class="bloglogo" href="https://google.com/+{{ .Site.Params.googlePlusName }}" target="_blank">
+                    <span class="icon-google-plus"></span>
+                </a>
+            &nbsp;
+            {{end}}
+        </section>
     </footer>
     </div>
     <script type="text/javascript" src="{{.Site.BaseURL}}js/jquery.js"></script>
